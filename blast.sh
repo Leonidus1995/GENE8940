@@ -13,7 +13,7 @@
 OUTDIR="/work/gene8940/fg69001/blast"                  # replace cbergman in the following line with your myid
 QUERY="/home/fg69001/GENE8940/sample.fasta"            # replace cbergman in the following line with your myid
 
-#if output directory doesn't exist, create it
+#if output directory doesn't exist, create it for sure
 if [ ! -d $OUTDIR ]
 then
     mkdir -p $OUTDIR
