@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=HW_1		                    # Job name
+#SBATCH --job-name=HW_1		                            # Job name
 #SBATCH --partition=batch		                        # Partition (queue) name
 #SBATCH --ntasks=1			                            # Single task job
 #SBATCH --cpus-per-task=4		                        # Number of cores per task 
