@@ -19,6 +19,6 @@ curl -s $URL | gunzip -c > $OUTDIR/ecoli_MG1655.gff
 if [ ! -d $OUTDIR ]
 then
     mkdir -p $OUTDIR
-fi
+ficd 
 
 cut -f3 /work/gene8940/fg69001/Homework_1/ecoli_MG1655.gff | grep "CDS" | sort | uniq -c > /work/gene8940/fg69001/Homework_1/results.txt
