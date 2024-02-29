@@ -45,11 +45,15 @@ bedtools getfasta -fi ecoli_MG1655_ver58.fa -bed ecoli_intergenic.bed -fo ecoli5
 
 # Calculating the %GC content of CDS and non-CDS regions
 faCount ecoli58_cds.fa > results_cds.txt
-awk 'NR > 1 { gc_count += $2 + $3; total_count += $1 + $3 + $4 + $2} END { 
+awk 'NR > 1 { gc_count += $4 + $5; total_count += $6 + $3 + $4 + $5} END { 
     gc_content = (gc_count / total_count) * 100; 
     print("Overall GC content:", gc_content)}' results_cds.txt > $OUTDIR/summary_cds.txt
 
-faCount ecoli58_cds.fa > results_intergenic.txt
-awk 'NR > 1 { gc_count += $2 + $3; total_count += $1 + $3 + $4 + $2} END { 
+faCount ecoli58_intergenic.fa > results_intergenic.txt
+awk 'NR > 1 { gc_count += $4 + $5; total_count += $6 + $3 + $4 + $5} END { 
     gc_content = (gc_count / total_count) * 100; 
     print("Overall GC content:", gc_content)}' results_intergenic.txt > $OUTDIR/summary_intergenic.txt
+
+# faCount -summary command also give the similar results for GC content
+faCount -summary ecoli58_cds.fa > facount_cds.txt
+faCount -summary ecoli58_intergenic.fa > facount_intergenic.txt
