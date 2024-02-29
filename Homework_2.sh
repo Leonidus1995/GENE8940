@@ -18,7 +18,7 @@ curl -s $SEQ | gunzip -c > $OUTDIR/ecoli_MG1655_ver58.fa
 ANN="https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-58/gff3/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.58.chromosome.Chromosome.gff3.gz"
 curl -s $ANN | gunzip -c > $OUTDIR/ecoli_MG1655_ver58.gff
 
-# Load modules to manipulate annotation file
+# Load modules to manipulate sequence and annotation files
 module load BEDOPS/2.4.41-foss-2021b 
 module load BEDTools/2.30.0-GCC-11.2.0
 module load SAMtools/1.14-GCC-11.2.0
@@ -28,4 +28,28 @@ module load ucsc/443
 convert2bed --input=gff < ecoli_MG1655_ver58.gff > ecoli58.bed
 
 # Filter the BED file to create new BED file with only CDS regions
-cut -f1 /work/gene8940/fg69001/Homework_2/ecoli58.bed | grep "CDS" | sort | uniq -c > /work/gene8940/fg69001/Homework_2/ecoli58_CDS.bed
+grep "ID=CDS" ecoli58.bed > ecoli58_1_cds.bed
+
+# Create a genome index file for the genome sequence fasta file
+samtools faidx ecoli_MG1655_ver58.fa
+
+# Extract the first two columns of the index file and save it in the text file
+cut -f1,2 ecoli_MG1655_ver58.fa.fai > ecoli_MG1655_index.txt
+
+# Find the non CDS regions
+bedtools complement -i ecoli58_1_cds.bed -g ecoli_MG1655_index.txt > ecoli_intergenic.bed
+
+# Extract FASTA sequences for CDS and non-CDS regions from a reference genome based on respective annotated BED files
+bedtools getfasta -fi ecoli_MG1655_ver58.fa -bed ecoli58_1_cds.bed -fo ecoli58_cds.fa
+bedtools getfasta -fi ecoli_MG1655_ver58.fa -bed ecoli_intergenic.bed -fo ecoli58_intergenic.fa
+
+# Calculating the %GC content of CDS and non-CDS regions
+faCount ecoli58_cds.fa > results_cds.txt
+awk 'NR > 1 { gc_count += $2 + $3; total_count += $1 + $3 + $4 + $2} END { 
+    gc_content = (gc_count / total_count) * 100; 
+    print("Overall GC content:", gc_content)}' results_cds.txt
+
+faCount ecoli58_cds.fa > results_intergenic.txt
+awk 'NR > 1 { gc_count += $2 + $3; total_count += $1 + $3 + $4 + $2} END { 
+    gc_content = (gc_count / total_count) * 100; 
+    print("Overall GC content:", gc_content)}' results_intergenic.txt
