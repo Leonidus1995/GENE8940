@@ -47,9 +47,9 @@ bedtools getfasta -fi ecoli_MG1655_ver58.fa -bed ecoli_intergenic.bed -fo ecoli5
 faCount ecoli58_cds.fa > results_cds.txt
 awk 'NR > 1 { gc_count += $2 + $3; total_count += $1 + $3 + $4 + $2} END { 
     gc_content = (gc_count / total_count) * 100; 
-    print("Overall GC content:", gc_content)}' results_cds.txt
+    print("Overall GC content:", gc_content)}' results_cds.txt > $OUTDIR/summary_cds.txt
 
 faCount ecoli58_cds.fa > results_intergenic.txt
 awk 'NR > 1 { gc_count += $2 + $3; total_count += $1 + $3 + $4 + $2} END { 
     gc_content = (gc_count / total_count) * 100; 
-    print("Overall GC content:", gc_content)}' results_intergenic.txt
+    print("Overall GC content:", gc_content)}' results_intergenic.txt > $OUTDIR/summary_intergenic.txt
