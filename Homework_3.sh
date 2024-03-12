@@ -34,19 +34,15 @@ curl -s $SEQ | gunzip -c > $OUTDIR/ecoli_MG1655_ver58.fa
 quast.py -o $OUTDIR/quast_output_dir -t 10 -r $OUTDIR/ecoli_MG1655_ver58.fa $OUTDIR/canu_ecoli_output_dir/ecoli.contigs.fasta $OUTDIR/spades_ecoli_output_dir/scaffolds.fasta
 
 # Generate mummerplots for PacBio and Illumina assemblies
+# For Illumina assembly
 mkdir $OUTDIR/mummer
-nucmer -t 10 $OUTDIR/ecoli_MG1655_ver58.fa <assembly.fasta> -p mummer_ecoli
-delta-filter -1 mummer_ecoli.delta  mummer_ecoli.1delta
-mummerplot --size large -layout --color -f --png mummer_ecoli.1delta -p mummer_ecoli
+nucmer -t 10 $OUTDIR/ecoli_MG1655_ver58.fa $OUTDIR/spades_ecoli_output_dir/scaffolds.fasta -p $OUTDIR/mummer/mummer_ecoli_spades
+delta-filter -1 $OUTDIR/mummer/mummer_ecoli_spades.delta > $OUTDIR/mummer/mummer_ecoli_spades.1delta
+show-coords $OUTDIR/mummer/mummer_ecoli_spades.1delta
+mummerplot --size large -layout --color -f --png $OUTDIR/mummer/mummer_ecoli_spades.1delta -p $OUTDIR/mummer/mummer_ecoli_spades
 
-
-
-
-
-
-
-spades.py -t 10 -k 21,33,55,77 --isolate --memory 40 --pe1-1 /work/gene8940/instructor_data/s_6_1.fastq.gz  --pe1-2 /work/gene8940/instructor_data/s_6_2.fastq.gz -o $OUTDIR/spades_ecoli_output_dir
-
-
-OUTDIR="/work/gene8940/fg69001/hw3_test"
-canu -p ecoli -d $OUTDIR/canu_ecoli_output_dir genomeSize=4.8m useGrid=false -pacbio-raw /work/gene8940/instructor_data/ecoli_p6_25x.filtered.fastq.gz
+# For PacBio assembly
+nucmer -t 10 $OUTDIR/ecoli_MG1655_ver58.fa $OUTDIR/canu_ecoli_output_dir/ecoli.contigs.fasta -p $OUTDIR/mummer/mummer_ecoli_canu
+delta-filter -1 $OUTDIR/mummer/mummer_ecoli_canu.delta > $OUTDIR/mummer/mummer_ecoli_canu.1delta
+show-coords $OUTDIR/mummer/mummer_ecoli_canu.1delta
+mummerplot --size large -layout --color -f --png $OUTDIR/mummer/mummer_ecoli_canu.1delta -p $OUTDIR/mummer/mummer_ecoli_canu
