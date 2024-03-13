@@ -46,3 +46,4 @@ nucmer -t 10 $OUTDIR/ecoli_MG1655_ver58.fa $OUTDIR/canu_ecoli_output_dir/ecoli.c
 delta-filter -1 $OUTDIR/mummer/mummer_ecoli_canu.delta > $OUTDIR/mummer/mummer_ecoli_canu.1delta
 show-coords $OUTDIR/mummer/mummer_ecoli_canu.1delta
 mummerplot --size large -layout --color -f --png $OUTDIR/mummer/mummer_ecoli_canu.1delta -p $OUTDIR/mummer/mummer_ecoli_canu
+
