@@ -8,7 +8,7 @@
 #SBATCH --output=/work/gene8940/fg69001/Homework_5/log.%j.out		# Location of standard output log files 
 #SBATCH --error=/work/gene8940/fg69001/Homework_5/log.%j.err        # Location of standard error log files
 #SBATCH --mail-user=fg69001@uga.edu                                 # Where to send mail 
-#SBATCH --mail-type=END,FAIL                                        # Mail events (BEGIN, END, FAIL, ALL)
+#SBATCH --mail-type=END,FAIL                                       # Mail events (BEGIN, END, FAIL, ALL)
 
 # set output directory variable
 OUTDIR1="/work/gene8940/fg69001/Homework_5"
