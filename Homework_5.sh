@@ -10,9 +10,7 @@
 #SBATCH --mail-user=fg69001@uga.edu                                 # Where to send mail 
 #SBATCH --mail-type=END,FAIL                                       # Mail events (BEGIN, END, FAIL, ALL)
 
-# set output directory variable
-OUTDIR1="/work/gene8940/fg69001/Homework_5"
-
+# Load modules
 module load SRA-Toolkit/3.0.1-centos_linux64
 module load kallisto/0.48.0-gompi-2022a
 
@@ -31,6 +29,15 @@ do
   kallisto quant -t $THREADS -b 100 -i $OUTDIR/ecoli_MG1655_cds.fa.idx -o $i /work/gene8940/instructor_data/${i}_1.fastq.gz /work/gene8940/instructor_data/${i}_2.fastq.gz
 done
 
+
+# Create and activate a conda environment to perform differential expression using Sleuth
+conda update -y conda
+conda create -y --name sleuth
+conda activate sleuth
+conda install -y --channel bioconda r-sleuth
+
+source activate sleuth
+R --no-save < /home/fg69001/GENE8940/homework5.r
 
 
 
