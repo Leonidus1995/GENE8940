@@ -19,7 +19,7 @@ OUTDIR="/work/gene8940/fg69001/Homework_5/kallisto"
 mkdir -p $OUTDIR
 
 # generate a transcript De Bruijn Graph (T-DBG) stored in an index file
-curl https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-58/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/ > $OUTDIR/ecoli_MG1655_cds.fa
+curl https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-58/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz > $OUTDIR/ecoli_MG1655_cds.fa
 kallisto index -i $OUTDIR/ecoli_MG1655_cds.fa.idx $OUTDIR/ecoli_MG1655_cds.fa
 
 # Perform pseudoalignment and transcript abundance estimation using Kallisto T-DBG
