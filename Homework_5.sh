@@ -33,9 +33,9 @@ done
 # Create and activate a conda environment to perform differential expression using Sleuth
 conda update -y conda
 conda create -y --name sleuth
-conda install -y --channel bioconda r-sleuth
+conda install -y --channel bioconda r r-sleuth
 source activate sleuth
-R --no-save < /home/fg69001/GENE8940/homework5.r
+R --no-save < $HOME/GENE8940/homework5.r
 
 
 
