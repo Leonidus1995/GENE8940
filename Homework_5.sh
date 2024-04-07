@@ -37,7 +37,7 @@ source activate sleuth_project
 conda install -y --channel bioconda r-sleuth
 
 source activate sleuth_project
-R --no-save < $HOME/GENE8940/homework5.r
+R --no-save < /home/fg69001/GENE8940/homework5.r
 
 
 
