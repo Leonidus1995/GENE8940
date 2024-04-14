@@ -26,7 +26,7 @@ kallisto index -i $OUTDIR/cotton_rna.fa.idx $OUTDIR/cotton_rna.fa
 THREADS=6
 for i in CCI1, CCI21, CCI3, CNI1, CNI2, CNI11
 do
-  kallisto quant -t $THREADS -b 100 -i $OUTDIR/cotton_rna.fa.idx -o $OUTDIR/$i /work/gene8940/fg69001/Final_project/cotton_sequences/${i}_1.fastq.gz /work/gene8940/fg69001/Final_project/cotton_sequences/${i}_2.fastq.gz
+  kallisto quant -t $THREADS -b 100 -i $OUTDIR/cotton_rna.fa.idx -o $OUTDIR/$i /work/gene8940/fg69001/Final_project/cotton_sequences/${i}_1.fq.gz /work/gene8940/fg69001/Final_project/cotton_sequences/${i}_2.fq.gz
 done
 
 # Create and activate a conda environment to perform differential expression using Sleuth
@@ -36,4 +36,4 @@ source activate sleuth_project
 conda install -y --channel bioconda r-sleuth
 
 source activate sleuth_project
-R --no-save < /home/fg69001/GENE8940/homework5.r
+R --no-save < /home/fg69001/GENE8940/Final_project.r
