@@ -24,7 +24,7 @@ kallisto index -i $OUTDIR/cotton_rna.fa.idx $OUTDIR/cotton_rna.fa
 
 # Perform pseudoalignment and transcript abundance estimation using Kallisto T-DBG
 THREADS=6
-for i in CCI1, CCI21, CCI3, CNI1, CNI2, CNI11
+for i in CCI1 CCI21 CCI3 CNI1 CNI2 CNI11
 do
   kallisto quant -t $THREADS -b 100 -i $OUTDIR/cotton_rna.fa.idx -o $OUTDIR/$i /work/gene8940/fg69001/Final_project/cotton_sequences/${i}_1.fq.gz /work/gene8940/fg69001/Final_project/cotton_sequences/${i}_2.fq.gz
 done
