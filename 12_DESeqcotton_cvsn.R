@@ -23,8 +23,8 @@ dds_cotton <- DESeqDataSetFromMatrix(countData=round(countData_cotton), colData_
 
 #next two steps are for visualization of libraries
 
-vsd_cotton <- vst(dds_cotton, blind=FALSE)
-labels_cotton <- paste(c("CCI1","CCI21","CCI3","CCI4","CNI1","CNI11","CNI2"))
+vsd_cotton <- vst(dds_cotton, blind = FALSE)
+labels_cotton <- paste(c("CCI1", "CCI21", "CCI3", "CNI1", "CNI11", "CNI2"))
 pc_cotton <- plotPCA(vsd_cotton, intgroup=c("condition")) + geom_text(label=labels_cotton)
 gridExtra::grid.arrange(egg::set_panel_size(p=pc_cotton, width=unit(20, "cm"), height=unit(10, "cm")))
 ggsave(filename = "pc12_cotton_cvsn.pdf", plot = egg::set_panel_size(p=pc_cotton, width=unit(12, "cm"), height=unit(10, "cm")))
