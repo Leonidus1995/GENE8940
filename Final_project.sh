@@ -22,6 +22,10 @@ URL="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/007/990/345/GCF_007990345.1_Go
 curl -s $URL | gunzip -c > $OUTDIR/cotton_rna.fa
 kallisto index -i $OUTDIR/cotton_rna.fa.idx $OUTDIR/cotton_rna.fa
 
+# Download the GTF file as well
+URL1="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/007/990/345/GCF_007990345.1_Gossypium_hirsutum_v2.1/GCF_007990345.1_Gossypium_hirsutum_v2.1_genomic.gtf.gz"
+curl -s $URL1 > $OUTDIR/cotton.gtf.gz
+ 
 # Perform pseudoalignment and transcript abundance estimation using Kallisto T-DBG
 THREADS=6
 for i in CCI1 CCI21 CCI3 CNI1 CNI2 CNI11
@@ -30,10 +34,10 @@ do
 done
 
 # Create and activate a conda environment to perform differential expression using Sleuth
-conda update -y conda
-conda create -y --name sleuth_project
-source activate sleuth_project
-conda install -y --channel bioconda r-sleuth
+#conda update -y conda
+#conda create -y --name sleuth_project
+#source activate sleuth_project
+#conda install -y --channel bioconda r-sleuth
 
-source activate sleuth_project
-R --no-save < /home/fg69001/GENE8940/Final_project.r
+#source activate sleuth_project
+#R --no-save < /home/fg69001/GENE8940/Final_project.r

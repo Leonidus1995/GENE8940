@@ -11,5 +11,11 @@ library("pheatmap")
 dir <- "/work/gene8940/fg69001/Final_project/kallisto"
 setwd(dir)
 
-samples <- 
+samples <- read.csv(file.path(dir, "samples.csv"), header = TRUE)
+
+files <- file.path(dir, "kallisto", samples$SampleName, "abundance.tsv")
+names(files) <- samples$SampleName
+
+# Mapping transcripts to genes
+txdb <- makeTxDbFromGFF("")
 
