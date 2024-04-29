@@ -1,0 +1,7 @@
+SampleName,FileName,dex
+CCI1,output/CCI1,inf
+CCI21,output/CCI21,inf
+CCI3,output/CCI3,inf
+CNI1,output/CNI1,noninf
+CNI11,output/CNI11,noninf
+CNI2,output/CNI2,noninf

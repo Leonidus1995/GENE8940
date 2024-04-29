@@ -2,9 +2,9 @@
 #SBATCH --job-name=Bowtie		                            
 #SBATCH --partition=batch		                                    
 #SBATCH --ntasks=1			                                        
-#SBATCH --cpus-per-task=18		                                     
-#SBATCH --mem=40gb			                                        
-#SBATCH --time=2:00:00  		                                    
+#SBATCH --cpus-per-task=24		                                     
+#SBATCH --mem=50gb			                                        
+#SBATCH --time=72:00:00  		                                    
 #SBATCH --output=/work/gene8940/fg69001/Final_project/log.%j.out		 
 #SBATCH --error=/work/gene8940/fg69001/Final_project/log.%j.err        
 #SBATCH --mail-user=fg69001@uga.edu                                  
