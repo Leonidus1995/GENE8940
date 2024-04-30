@@ -1,8 +1,3 @@
-if (!require("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-
-BiocManager::install(c("DESeq2", "tximport", "EnhancedVolcano", "vsn","RColorBrewer"))
-
 library(tximport)
 library(jsonlite)
 library(DESeq2)
