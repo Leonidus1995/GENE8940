@@ -1,7 +1,6 @@
 library(tximport)
 library(jsonlite)
 library(DESeq2)
-library(PCAtools)
 library(pheatmap)
 library(ggplot2)
 library(RColorBrewer)
