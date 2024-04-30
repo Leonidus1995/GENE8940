@@ -1,17 +1,13 @@
-library(rhdf5)
-library(tximportData)
 library(tximport)
 library(jsonlite)
 library(readr)
-library(biomaRt)
 library(DESeq2)
 library(PCAtools)
 library(pheatmap)
-library(GenomicFeatures)
-library(AnnotationDbi)
 library(ggplot2)
 library(RColorBrewer)
 library(EnhancedVolcano)
+library(vsn)
 
 dir <- "/work/gene8940/fg69001/Final_project/kallisto"
 setwd(dir)
