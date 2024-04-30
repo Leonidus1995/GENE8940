@@ -1,7 +1,6 @@
 library(tximport)
 library(jsonlite)
 library(DESeq2)
-library(pheatmap)
 library(ggplot2)
 library(RColorBrewer)
 library(EnhancedVolcano)
@@ -66,18 +65,6 @@ ntd_cotton <- normTransform(dds_cotton)
 vsd_cotton <- vst(dds_cotton, blind = FALSE)
 
 
-# heatmap of relatedness within samples
-sampleDists_cotton <- dist(t(assay(vsd_cotton)))
-sampleDistMatrix_cotton <- as.matrix(sampleDists_cotton)
-
-colors <- colorRampPalette(rev(brewer.pal(9, "Blues")))(255)
-
-rownames(sampleDistMatrix_cotton) <- paste(c("CCI1","CCI21","CCI3","CNI1","CNI11","CNI2"))
-colnames(sampleDistMatrix_cotton) <- NULL
-pheatmap(sampleDistMatrix_cotton,
-         clustering_distance_rows = sampleDists_cotton,
-         clustering_distance_cols = sampleDists_cotton,
-         col = colors)
 
 # plot fold counts across groups
 res_cotton <- results(dds_cotton, contrast=c("condition","CCI","CNI"), alpha=0.001)

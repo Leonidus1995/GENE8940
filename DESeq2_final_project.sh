@@ -11,6 +11,6 @@
 #SBATCH --mail-type=END,FAIL 
 
 cd $SLURM_SUBMIT_DIR
-module load R/4.1.0-foss-2019b
+module load /home/fg69001/R/x86_64-pc-linux-gnu-library/4.3
 
 R CMD BATCH /home/fg69001/GENE8940/DESeq2_final_project.R
