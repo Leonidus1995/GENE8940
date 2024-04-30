@@ -1,6 +1,5 @@
 library(tximport)
 library(jsonlite)
-library(readr)
 library(DESeq2)
 library(PCAtools)
 library(pheatmap)
