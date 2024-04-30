@@ -11,6 +11,11 @@
 #SBATCH --mail-type=END,FAIL 
 
 cd $SLURM_SUBMIT_DIR
-module load /home/fg69001/R/x86_64-pc-linux-gnu-library/4.3
+module load R/4.3.2-foss-2022b
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install(c("DESeq2", "tximport", "EnhancedVolcano", "vsn","RColorBrewer"))
 
 R CMD BATCH /home/fg69001/GENE8940/DESeq2_final_project.R
