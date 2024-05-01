@@ -25,7 +25,7 @@ kallisto index -i $OUTDIR/cotton_rna.fa.idx $OUTDIR/cotton_rna.fa
 # Download the GTF file as well
 URL1="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/007/990/345/GCF_007990345.1_Gossypium_hirsutum_v2.1/GCF_007990345.1_Gossypium_hirsutum_v2.1_genomic.gtf.gz"
 curl -s $URL1 > $OUTDIR/cotton.gtf.gz
- 
+
 # Perform pseudoalignment and transcript abundance estimation using Kallisto T-DBG
 THREADS=6
 for i in CCI1 CCI21 CCI3 CNI1 CNI2 CNI11

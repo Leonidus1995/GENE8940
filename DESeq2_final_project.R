@@ -5,13 +5,14 @@ library(ggplot2)
 library(RColorBrewer)
 library(EnhancedVolcano)
 library(vsn)
+library(GenomicFeatures)
 
 dir <- "/work/gene8940/fg69001/Final_project/kallisto"
 setwd(dir)
 
 samples <- read.csv(file.path(dir, "samples.csv"), header = TRUE)
 
-files <- file.path(dir, "kallisto", samples$SampleName, "abundance.tsv")
+files <- file.path(dir, samples$SampleName, "abundance.tsv")
 names(files) <- samples$SampleName
 
 # Mapping transcripts to genes
@@ -78,7 +79,7 @@ resOrdered_cotton <- res_cotton[order(res_cotton$padj), ]
 
 #get deferentially expressed genes matrix at FDR=5%, fold-change>2
 
-sig_cotton <- resOrdered_cotton[!is.na(resOrdered_cotton$padj) & resOrdered_cotton$padj<0.05 & abs(resOrdered_cotton$log2FoldChange)>=0, ]
+sig_cotton <- resOrdered_cotton[!is.na(resOrdered_cotton$padj) & resOrdered_cotton$padj<0.05 & abs(resOrdered_cotton$log2FoldChange)>=1, ]
 
 #visualize volcano plot for differentially expressed genes
 

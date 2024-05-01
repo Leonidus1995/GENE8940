@@ -10,7 +10,6 @@
 #SBATCH --mail-user=fg69001@uga.edu                                  
 #SBATCH --mail-type=END,FAIL 
 
-cd $SLURM_SUBMIT_DIR
 module load R/4.3.2-foss-2022b
 
 R CMD BATCH /home/fg69001/GENE8940/DESeq2_final_project.R
